@@ -28,20 +28,6 @@
     <% end %>
   
     <%= yield %>
-  
-    <!-- Add your JavaScript/jQuery code here -->
-    <script>
-      $(document).ready(function() {
-        // Show the flash notice container with a fade-in effect
-        $('.flash-notice-container, .flash-alert-container').fadeIn('slow');
-  
-        // Hide the flash notice containers after a certain time (e.g., 5 seconds)
-        setTimeout(function() {
-          $('.flash-notice-container, .flash-alert-container').fadeOut('slow');
-        }, 5000);
-      });
-    </script>
-
 
       </body>
     </html>
