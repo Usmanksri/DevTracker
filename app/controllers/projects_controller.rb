@@ -66,6 +66,7 @@ class ProjectsController < ApplicationController
 
     
     def project_params
+        byebug
         params.require(:project).permit(:name, :description, member_ids: [])
 
     end

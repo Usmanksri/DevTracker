@@ -1,54 +1,46 @@
 <div class="container">
-  <div id="error-messages">
-    <% if @project.errors.any? %>
-      <h2>The following errors prevented the project from being saved:</h2>
-      <ul>
-        <% @project.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
+  <% if @project.errors.any? %>
+    <h2>The following errors prevented the project from being saved</h2>
+    <ul>
+      <% @project.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <div class="row justify-content-center">
     <div class="col-10">
-      <form id="project-form" class="shadow p-3 mb-3 custom-row rounded" action="<%= projects_path %>" method="post">
+      <%= form_with(model: @project, class: "shadow p-3 mb-3 custom-row rounded", local: true) do |f| %>
         <div class="form-group row">
-          <label for="project_name" class="col-2 col-form-label text-light">Name:</label>
+          <%= f.label :name, class: "col-2 col-form-label text-light" %>
           <div class="col-10">
-            <input type="text" id="project_name" name="project[name]" class="form-control shadow rounded" placeholder="Name of the project">
+            <%= f.text_field :name, class: "form-control shadow rounded", placeholder: "Name of the project" %>
           </div>
         </div>
         <br>
 
-        <div class="form-group row paragraph-text-area">
-          <label for="project_description" class="col-2 col-form-label text-light">Description:</label>
-          <div class="col-10">
-            <textarea id="project_description" name="project[description]" class="form-control shadow rounded" placeholder="Description of project"></textarea>
+        <div class="form-group row">
+          <%= f.label :description, class: "col-2 col-form-label text-light " %>
+          <div class="col-10"> 
+            <%= f.rich_text_area :description, class: "form-control shadow rounded", placeholder: "Description of project" %>
           </div>
         </div>
 
-      
-
-    
-
         <div class="form-group row">
-          <label for="project_member_ids" class="col-2 col-form-label text-light">Members:</label>
-          <div class="col-10">
-            <select id="project_member_ids" name="project[member_ids][]" multiple class="form-control">
-              <% User.where(role: "member").each do |member| %>
-                <option value="<%= member.id %>"><%= member.name %></option>
-              <% end %>
-            </select>
+          <%= f.label :member, class: "col-2 col-form-label text-light" %>
+          <div class="col-10"> 
+          <%= f.collection_select :member_ids, User.where(role: "member"), :id, :name, {prompt: " make your selection one "}, { multiple: true , class: "form-control" } %>
+
+
           </div>
         </div>
         
         <br>
 
         <div class="form-group row justify-content-center">
-          <input type="submit" value="Submit" class="btn btn-outline-light btn-lg">
+          <%= f.submit class: "btn btn-outline-light btn-lg" %>
         </div>
-      </form>
+      <% end %>
     </div>
   </div>
 </div>

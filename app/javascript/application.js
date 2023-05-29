@@ -1,6 +1,8 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "trix"
+import "@rails/actiontext"
 
 console.log("javascript tested");
 $(document).ready(function() {
@@ -42,3 +44,4 @@ $(document).ready(function() {
   //   $('.flash-notice-container, .flash-alert-container').fadeOut('slow');
   // }, 5000);
 });
+
