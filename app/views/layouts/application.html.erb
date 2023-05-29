@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DevTracker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+   <body>
+      <%= render "layouts/navbar" %>
+      <br/>
+
+      <% if notice %>
+      <div class="flash-notice-container">
+        <%= notice %>
+      </div>
+    <% end %>
+  
+    <% if alert %>
+      <div class="flash-alert-container">
+        <%= alert %>
+      </div>
+    <% end %>
+  
+    <%= yield %>
+  
+    <!-- Add your JavaScript/jQuery code here -->
+    <script>
+      $(document).ready(function() {
+        // Show the flash notice container with a fade-in effect
+        $('.flash-notice-container, .flash-alert-container').fadeIn('slow');
+  
+        // Hide the flash notice containers after a certain time (e.g., 5 seconds)
+        setTimeout(function() {
+          $('.flash-notice-container, .flash-alert-container').fadeOut('slow');
+        }, 5000);
+      });
+    </script>
+
+
+      </body>
+    </html>

@@ -1,0 +1,50 @@
+<div id="page-content">
+<h1 class="text-center mt-4">Listing all tasks</h1>
+<div class="container">
+
+<% @tasks.each do |task| %>
+    <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+                <h5 class="card-title"><%= link_to task.title, task_path(task), class: "text-success" %></h5>
+                <%= link_to Project.find(task.project_id).name, project_path(Project.find(task.project_id)), class: "badge rounded-pill text-bg-info mr-1"%>
+
+        </div>
+                <div class="card-body">
+                <p class="card-text">Description: <%= truncate(task.description, length: 100) %></p>
+                <p class="card-text">Manger: <%= task.creator.name %></p>
+                <p class="card-text">Assigned to: <%= task.member.name %></p>
+                <%= link_to "View", task_path(task), class: "btn btn-outline-success" %>
+                <% if user_signed_in? %>
+                <%= link_to "Edit", edit_task_path(task), class: "btn btn-outline-info" %>
+                <%= button_to "Delete", task_path(task), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+                <% end %>
+        </div>
+
+                <div class="card-footer">
+                <div class="form-check form-check-inline">
+                <%= radio_button_tag "status_#{task.id}", "todo", task.status == 'todo', class: "form-check-input", data: { task_id: task.id } %>
+                <label class="form-check-label btn btn-outline-primary" for="status_<%= task.id %>">Todo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <%= radio_button_tag "status_#{task.id}", "in-process", task.status == 'in-process', class: "form-check-input", data: { task_id: task.id } %>
+                <label class="form-check-label btn btn-outline-warning" for="status_<%= task.id %>">In Process</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <%= radio_button_tag "status_#{task.id}", "done", task.status == 'done', class: "form-check-input", data: { task_id: task.id } %>
+                <label class="form-check-label btn btn-outline-success" for="status_<%= task.id %>">Done</label>
+                </div>
+                </div>
+            <div class="card-footer text-muted">
+                <small>Created <%= time_ago_in_words(task.created_at) %> ago, 
+                edited <%= time_ago_in_words(task.updated_at) %> ago</small>
+            </div>
+    </div>
+    </div>
+<% end %>
+</div>
+</div>
+
+
+

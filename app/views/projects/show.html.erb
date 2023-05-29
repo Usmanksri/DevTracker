@@ -1,0 +1,25 @@
+<div id="page-content">
+  <h1 class="text-center mt-4">Details of project</h1>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            by <%= @project.creator.name %>
+          </div>
+
+          <div class="card-body">
+          <h5 class="card-title"><%= link_to @project.name, class: "text-success" %></h5>
+          <p class="card-text"><%= truncate(@project.description, length: 100) %></p>
+        </div>
+
+          <div class="card-footer text-muted">
+            <small>Created <%= time_ago_in_words(@project.created_at) %> ago, 
+            edited <%= time_ago_in_words(@project.updated_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+  <% if @task.errors.any? %>
+    <h2>The following errors prevented the project from being saved</h2>
+    <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(model: @task, class: "shadow p-3 mb-3 custom-row rounded", local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :title, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of the task"%>
+          </div>
+        </div>
+        </br>
+
+        <div class="form-group row">
+          <%= f.label :description, class: "col-2 col-form-label text-light" %>
+          <div class="col-10"> 
+            <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of task" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :member, class: "col-2 col-form-label text-light" %> 
+          <div class="col-10"> 
+          <%= f.collection_select :member_id, Project.find(current_project_id).members, :id, :name, { prompt: "Select one" }, { class: "form-control" } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :priority, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :priority, 1, class: "form-check-input" %>
+              <%= f.label :priority_high, "High", class: "form-check-label" %>
+            </div>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :priority, 2, class: "form-check-input" %>
+              <%= f.label :priority_medium, "Medium", class: "form-check-label" %>
+            </div>
+            <div class="form-check form-check-inline">
+              <%= f.radio_button :priority, 3, class: "form-check-input" %>
+              <%= f.label :priority_low, "Low", class: "form-check-label" %>
+            </div>
+          </div>
+        
+        </br>
+
+        <div class="form-group row justify-content-center">
+          <%= f.submit class: "btn btn-outline-light btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

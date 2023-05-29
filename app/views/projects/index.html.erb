@@ -1,0 +1,36 @@
+    <div id="page-content">
+    <h1 class="text-center mt-4">Listing all project</h1>
+    <div class="container">
+
+    
+
+    <% @projects.each do |project| %>
+        <div class="row justify-content-md-center">
+        <div class="col-8 mt-4">
+            <div class="card text-center shadow mb-5 bg-white rounded">
+            <div class="card-header font-italic">
+                    <h5 class="card-title"><%= link_to project.name, project_path(project), class: "text-success" %></h5>
+            </div>
+
+                    <div class="card-body">
+                    <%= project.description.present? ? display_rich_text(project.description) : "No description available" %>
+                    <p class="card-text">Manger: <%= project.creator.name %></p>
+                    <p class="card-text">Members: <%= project.project_members.count %></p>
+                    <%= link_to "View", project_path(project), class: "btn btn-outline-success" %>
+                    <% if user_signed_in? %>
+                    <%= link_to "Edit", edit_project_path(project), class: "btn btn-outline-info" %>
+
+                    <%= button_to "Delete", project_path(project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+
+                    <% end %>
+                    </div>
+                    <div class="card-footer text-muted">
+                    <small>Created <%= time_ago_in_words(project.created_at) %> ago, 
+                    edited <%= time_ago_in_words(project.updated_at) %> ago</small>
+                </div>
+        </div>
+        </div>
+        </div>
+    <% end %>
+    </div>
+    </div>

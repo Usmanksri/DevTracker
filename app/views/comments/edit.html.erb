@@ -1,0 +1,27 @@
+<div class="container">
+  <% if @comment.errors.any? %>
+    <h2>The following errors prevented the comment from being saved</h2>
+    <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(model: [@task, @comment], url: task_comment_path(@task, @comment), class: "shadow p-3 mb-3 custom-row rounded", local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :content, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :content, class: "form-control shadow rounded", placeholder: "Content" %>
+          </div>
+        </div>
+        </br>
+        <div class="form-group row justify-content-center">
+          <%= f.submit class: "btn btn-outline-light btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
