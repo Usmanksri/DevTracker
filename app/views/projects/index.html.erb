@@ -14,7 +14,9 @@
 
                     <div class="card-body">
                     <%=  project.description %>
+                    <%= render_attachments(project.description) %>
                     
+
                      <p class="card-text">Manger: <%= project.creator.name %></p>
                     <p class="card-text">Members: <%= project.project_members.count %></p>
                     <%= link_to "View", project_path(project), class: "btn btn-outline-success" %>

@@ -26,8 +26,6 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(response) {
         console.log(response);
-        // Handle success response here if needed
-        // Update the task status display if necessary
       },
       error: function(xhr, status, error) {
         console.log("exception occurred ", error);
@@ -35,6 +33,15 @@ $(document).ready(function() {
       }
     });
   });
+
+    // $('#show-comment-form').click(function() {
+    //   console.log("clicked");
+    //   $('#comment-form').toggle();
+    //   $(this).hide(); // Hide the button
+    // });
+
+
+
 
   // // Show the flash notice container with a fade-in effect
   // $('.flash-notice-container, .flash-alert-container').fadeIn('slow');

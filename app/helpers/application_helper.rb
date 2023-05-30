@@ -9,5 +9,24 @@ module ApplicationHelper
          selected_project_id.to_i
        end
      end
-       
+
+    # def render_attachments(content)
+    #   content.body.attachments.each do |attachment|
+    #     link_to url_for(attachment), target: '_blank' do
+    #       image_tag attachment.variant(resize_to_limit: [200, 200])
+    #     end
+    #   end
+    # end
+
+    def render_attachments(content)
+      attachments = content.body.attachments
+    
+      attachments.map do |attachment|
+        link_to url_for(attachment), target: '_blank' do
+          image_tag url_for(attachment.variant(resize_to_limit: [10, 10]))
+        end
+      end.join.html_safe
+    end
+    
+
 end

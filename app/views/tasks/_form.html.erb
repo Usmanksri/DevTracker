@@ -17,14 +17,16 @@
             <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of the task"%>
           </div>
         </div>
-        </br>
+        <br>
 
         <div class="form-group row">
           <%= f.label :description, class: "col-2 col-form-label text-light" %>
           <div class="col-10"> 
-            <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of task" %>
+            <%= f.rich_text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of task" %>
           </div>
         </div>
+
+        <br>
         
         <div class="form-group row">
           <%= f.label :member, class: "col-2 col-form-label text-light" %> 
@@ -32,7 +34,7 @@
           <%= f.collection_select :member_id, Project.find(current_project_id).members, :id, :name, { prompt: "Select one" }, { class: "form-control" } %>
           </div>
         </div>
-
+        <br>
         <div class="form-group row">
           <%= f.label :priority, class: "col-2 col-form-label text-light" %>
           <div class="col-10">
@@ -50,7 +52,7 @@
             </div>
           </div>
         
-        </br>
+        <br>
 
         <div class="form-group row justify-content-center">
           <%= f.submit class: "btn btn-outline-light btn-lg" %>

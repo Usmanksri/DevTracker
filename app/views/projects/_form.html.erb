@@ -1,5 +1,6 @@
 <div class="container">
   <% if @project.errors.any? %>
+    
     <h2>The following errors prevented the project from being saved</h2>
     <ul>
       <% @project.errors.full_messages.each do |msg| %>
@@ -25,6 +26,8 @@
             <%= f.rich_text_area :description, class: "form-control shadow rounded", placeholder: "Description of project" %>
           </div>
         </div>
+
+        <br>
 
         <div class="form-group row">
           <%= f.label :member, class: "col-2 col-form-label text-light" %>
