@@ -48,6 +48,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'actiontext'
 gem 'byebug'
+gem "will_paginate"
 
 
 # Use Sass to process CSS

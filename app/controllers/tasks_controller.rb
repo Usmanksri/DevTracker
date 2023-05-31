@@ -7,7 +7,11 @@ class TasksController < ApplicationController
     include ApplicationHelper
     
     def index
-        @tasks=Task.where(project_id: current_project_id)
+        @tasks=Task.where(project_id: current_project_id).paginate(page: params[:page], per_page: 3)
+        respond_to do |format|
+            format.html
+            format.js
+        end
     end
 
     def new

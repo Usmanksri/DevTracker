@@ -1,0 +1,7 @@
+<% if @tasks.present? %>
+  $('#tasks').append('<%= j render @tasks %>');
+  $('.pagination').replaceWith('<%= j will_paginate @tasks %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

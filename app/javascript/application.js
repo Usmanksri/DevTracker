@@ -4,10 +4,12 @@ import "controllers"
 import "trix"
 import "@rails/actiontext"
 
-console.log("javascript tested");
+
+
+//console.log("javascript tested");
 $(document).ready(function() {
   // Test code here
-  console.log("jQuery is working!");
+  //console.log("jQuery is working!");
 
   $('input[type="radio"][name^="status_"]').change(function() {
     var taskID = $(this).data('taskId'); // Updated to use 'taskId'
@@ -34,13 +36,15 @@ $(document).ready(function() {
     });
   });
 
-    // $('#show-comment-form').click(function() {
-    //   console.log("clicked");
-    //   $('#comment-form').toggle();
-    //   $(this).hide(); // Hide the button
-    // });
-
-
+    // Pagination with scrolling
+    //debugger
+    $(window).on('scroll', function() {
+      var url = $('.pagination .next_page a').attr('href');
+      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+        $('.pagination').text('Loading more projects...');
+        $.getScript(url);
+      }
+    });
 
 
   // // Show the flash notice container with a fade-in effect
