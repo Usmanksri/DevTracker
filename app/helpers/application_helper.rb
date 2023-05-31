@@ -10,13 +10,6 @@ module ApplicationHelper
        end
      end
 
-    # def render_attachments(content)
-    #   content.body.attachments.each do |attachment|
-    #     link_to url_for(attachment), target: '_blank' do
-    #       image_tag attachment.variant(resize_to_limit: [200, 200])
-    #     end
-    #   end
-    # end
 
     def render_attachments(content)
       attachments = content.body.attachments
