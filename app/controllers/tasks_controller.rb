@@ -3,16 +3,17 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!
     before_action :authenticate_project, only: [:edit, :update, :destroy]
-
     include ApplicationHelper
     
     def index
-        @tasks=Task.where(project_id: current_project_id).paginate(page: params[:page], per_page: 3)
-        respond_to do |format|
-            format.html
-            format.js
-        end
+      @tasks = Task.includes(:creator, :member).where(project_id: current_project_id).paginate(page: params[:page])
+    
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
+    
 
     def new
         @task=Task.new

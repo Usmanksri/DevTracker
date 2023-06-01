@@ -5,10 +5,9 @@ import "@rails/actiontext";
 
 $(document).ready(function() {
   $('input[type="radio"][name^="status_"]').change(function() {
-    var taskID = $(this).data('taskId'); // Updated to use 'taskId'
+    var taskID = $(this).data('taskId');
     var status = $(this).val();
-    var taskURL = '/tasks/' + taskID; // Replace with the actual URL or path to the task
-
+    var taskURL = '/tasks/' + taskID; 
     console.log("task url is: ", taskURL);
 
     $.ajax({
@@ -24,20 +23,16 @@ $(document).ready(function() {
       },
       error: function(xhr, status, error) {
         console.log("exception occurred ", error);
-        // Handle error response here if needed
       }
     });
   });
 
-  function append_listing(elementId) {
-    var next_page = $('#' + elementId).data('next-page');
+    var next_page = $('#next_data').data('next-page');
     if (next_page) {
       var visitedUrl = undefined;
       $(window).on('scroll', function() {
         var url = $('.pagination a.next_page').attr('href');
         if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 20) {
-          console.log('inside if scrolling');
-          console.log("url", url);
           if (visitedUrl !== url) {
             $.getScript(url);
             visitedUrl = url;
@@ -45,10 +40,6 @@ $(document).ready(function() {
         }
       });
     }
-  }
-  append_listing('next_projects'); // Append projects
-  append_listing('next_tasks'); // Append tasks
-
 
 });
 
