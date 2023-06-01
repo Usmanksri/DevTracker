@@ -8,7 +8,7 @@
         <%= project.description %>
         <%= render_attachments(project.description) %>
         <p class="card-text">Manager: <%= project.creator.name %></p>
-        <p class="card-text">Members: <%= project.project_members.count %></p>
+        <p class="card-text">Members: <%= project.project_members.length %></p>
         <%= link_to "View", project_path(project), class: "btn btn-outline-success" %>
         <% if user_signed_in? %>
           <%= link_to "Edit", edit_project_path(project), class: "btn btn-outline-info" %>

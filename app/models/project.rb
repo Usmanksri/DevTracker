@@ -11,4 +11,7 @@ class Project < ApplicationRecord
     validates :name, presence: true
     validates :description, presence: true
 
+    self.per_page = 3
+
+
 end
