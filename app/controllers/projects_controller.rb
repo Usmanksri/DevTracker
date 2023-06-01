@@ -4,17 +4,18 @@ class ProjectsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        if (current_user.role == "manager")
-            @projects = current_user.created_projects.paginate(page: params[:page], per_page: 3)
+        if current_user.role == "manager"
+          @projects = current_user.created_projects.includes(:creator).paginate(page: params[:page])
         else
-            @projects = current_user.projects.paginate(page: params[:page], per_page: 3)
+          @projects = current_user.projects.includes(:creator).paginate(page: params[:page])
         end
-
+      
         respond_to do |format|
-            format.html
-            format.js
+          format.html
+          format.js
         end
-    end
+      end
+      
 
     def new
         @project=Project.new

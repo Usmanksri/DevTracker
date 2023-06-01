@@ -4,37 +4,10 @@
     <div id="tasks">
       <%= render @tasks %>
     </div>
-    <div class='dddd'>
-    </div>
     <div id="pagination" class='hidden'>
       <%= will_paginate @tasks %>
     </div>
   </div>
 </div>
-
-
-<script>
-  <% if @tasks.next_page %>
-    var visitedUrl = undefined
-    $(window).on('scroll', function() {
-    // console.log($('.pagination a.next_page'));
-      var url = $('.pagination a.next_page').attr('href');
-      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 20) {
-        console.log('inside if scrolling');
-        console.log("url", url)
-        // $('.pagination').text('Loading more projects...');
-        if(visitedUrl !== url){
-            $.getScript(url);
-            visitedUrl = url
-        }
-      }
-    });
-  <% else %>
-    console.log('inside else');
-    $(window).off('scroll');
-    $('.pagination').remove();
-  <% end %>
-</script>
-
-
+<div id="next_data" data-next-page="<%= @tasks.next_page %>"></div>
 
