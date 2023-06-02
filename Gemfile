@@ -49,7 +49,7 @@ gem 'devise'
 gem 'actiontext'
 gem 'byebug'
 gem "will_paginate"
-
+gem 'cancancan'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
