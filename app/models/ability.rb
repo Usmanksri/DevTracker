@@ -8,9 +8,6 @@ class Ability
       can :read, Project
       can [:read, :update], Task
       can [:read, :update], Comment, user_id: user.id
-    else
-      can :read, Project
-      can :read, Task
     end
   end
 end
