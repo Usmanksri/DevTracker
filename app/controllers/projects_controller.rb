@@ -76,13 +76,10 @@ class ProjectsController < ApplicationController
 
     
     def project_params
-        # byebug
-        #params.require(:project).permit(:name, :description, member_ids: [])
-
         params.require(:project).permit(:name, :description, member_ids: []).tap do |whitelisted|
             whitelisted[:description] = params[:project][:description]
-          end
-
+        end
+        
     end
     
 
