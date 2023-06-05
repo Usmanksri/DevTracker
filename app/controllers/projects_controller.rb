@@ -3,13 +3,16 @@ class ProjectsController < ApplicationController
     before_action :set_project, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!
 
+    load_and_authorize_resource
+
+  
+
     def index
         if current_user.role == "manager"
           @projects = current_user.created_projects.includes(:creator).paginate(page: params[:page])
         else
           @projects = current_user.projects.includes(:creator).paginate(page: params[:page])
         end
-      
         respond_to do |format|
           format.html
           format.js
@@ -36,6 +39,7 @@ class ProjectsController < ApplicationController
 
     def create
         @project=Project.new(project_params)
+
         @project.creator_id=current_user.id
         
         if @project.save
@@ -53,6 +57,7 @@ class ProjectsController < ApplicationController
     end
 
     def update
+      
         if @project.update(project_params)
             flash[:notice] = "Project was updated successfully."
             redirect_to projects_path

@@ -2,7 +2,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "trix";
 import "@rails/actiontext";
-
+// update the status of tasks
 $(document).ready(function() {
   $('input[type="radio"][name^="status_"]').change(function() {
     var taskID = $(this).data('taskId');
@@ -26,7 +26,7 @@ $(document).ready(function() {
       }
     });
   });
-
+  // appends the tasks and projects on scroll
     var next_page = $('#next_data').data('next-page');
     if (next_page) {
       var visitedUrl = undefined;
@@ -41,15 +41,15 @@ $(document).ready(function() {
       });
     }
 
+    // hide the flash and notice messages 
+      $('.flash-notice-container, .flash-alert-container').fadeIn('slow');
+      setTimeout(function() {
+        $('.flash-notice-container, .flash-alert-container').fadeOut('slow');
+      }, 5000);
 });
 
 
 
-// will be used later for showin and hiding of flash messages
-  // // Show the flash notice container with a fade-in effect
-  // $('.flash-notice-container, .flash-alert-container').fadeIn('slow');
-  // // Hide the flash notice containers after a certain time (e.g., 5 seconds)
-  // setTimeout(function() {
-  //   $('.flash-notice-container, .flash-alert-container').fadeOut('slow');
-  // }, 5000);
+
+
 

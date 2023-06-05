@@ -10,8 +10,11 @@
         <p class="card-text">Manager: <%= project.creator.name %></p>
         <p class="card-text">Members: <%= project.project_members.length %></p>
         <%= link_to "View", project_path(project), class: "btn btn-outline-success" %>
-        <% if user_signed_in? %>
+
+        <% if can? :update, project %>
           <%= link_to "Edit", edit_project_path(project), class: "btn btn-outline-info" %>
+        <% end %>
+        <% if can? :destory, project %>
           <%= button_to "Delete", project_path(project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
         <% end %>
       </div>

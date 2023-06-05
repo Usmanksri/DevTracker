@@ -47,8 +47,10 @@
                         <div class="card-body">
                           <strong><%= comment.user.name %>: </strong>
                           <%= comment.content %>
-                          <% if user_signed_in? && comment.user == current_user %>
+                            <% if can? :update, comment %>
                             <%= link_to "Edit", edit_task_comment_path(@task, comment), class: "btn btn-outline-info" %>
+                            <% end %>
+                            <% if can? :destory, comment %>
                             <%= button_to "Delete", task_comment_path(@task, comment), method: :delete, class: "btn btn-outline-danger" %>
                           <% end %>
                         </div>
