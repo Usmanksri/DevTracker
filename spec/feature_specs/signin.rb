@@ -1,16 +1,13 @@
 require 'rails_helper'
-require 'support/user_helper'
 
 RSpec.describe 'User login', type: :feature do
-  include UserHelper
-
-  let!(:manager) { create_user('manager') }
+  let!(:manager) { FactoryBot.create(:user, role: 'manager') }
 
   scenario 'User login with valid credentials' do
     visit new_user_session_path
 
-    fill_in 'Email', with: 'email@gmail.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'Email', with: manager.email
+    fill_in 'Password', with: manager.password
     click_button 'Log in'
 
     expect(page).to have_content('Signed in successfully.')

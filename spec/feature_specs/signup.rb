@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'support/user_helper'
 
 RSpec.describe 'User Signup', type: :feature do
 
