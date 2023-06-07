@@ -48,7 +48,6 @@ class ProjectsController < ApplicationController
 
         else
          render 'new'
-      
         end
     end
 
@@ -62,8 +61,8 @@ class ProjectsController < ApplicationController
             flash[:notice] = "Project was updated successfully."
             redirect_to projects_path
         else
-            flash[:notice]= "Not updated  #{@project.errors.full_messages}"
-           redirect_to projects_path
+            flash[:alert]= "Project not updated."
+            redirect_to projects_path
         end
     end
 

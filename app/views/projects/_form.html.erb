@@ -11,7 +11,7 @@
 
   <div class="row justify-content-center">
     <div class="col-10">
-      <%= form_with(model: @project, class: "shadow p-3 mb-3 custom-row rounded", local: true) do |f| %>
+      <%= form_with(model: @project, class: "shadow p-3 mb-3 custom-row rounded", local: true, data: { turbo: false }) do |f| %>
         <div class="form-group row">
           <%= f.label :name, class: "col-2 col-form-label text-light" %>
           <div class="col-10">
