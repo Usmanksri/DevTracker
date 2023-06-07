@@ -2,6 +2,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "trix";
 import "@rails/actiontext";
+
 // update the status of tasks
 $(document).ready(function() {
   $('input[type="radio"][name^="status_"]').change(function() {
@@ -53,3 +54,4 @@ $(document).ready(function() {
 
 
 
+import "channels"

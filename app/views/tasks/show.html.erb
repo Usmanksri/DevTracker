@@ -40,22 +40,10 @@
                     <% end %>
               </div>
               <br>
-                  <%if @comments.any?%>
-                    <h1 class="text-center mt-4">Commnets</h1>
-                    <% @comments.each do |comment| %>
-                      <div class="card">
-                        <div class="card-body">
-                          <strong><%= comment.user.name %>: </strong>
-                          <%= comment.content %>
-                            <% if can? :update, comment %>
-                            <%= link_to "Edit", edit_task_comment_path(@task, comment), class: "btn btn-outline-info" %>
-                            <% end %>
-                            <% if can? :destory, comment %>
-                            <%= button_to "Delete", task_comment_path(@task, comment), method: :delete, class: "btn btn-outline-danger" %>
-                          <% end %>
-                        </div>
+                   <% if @comments.any? %>
+                      <div id="comments">
+                        <%= render partial: 'tasks/comment', collection: @comments %>
                       </div>
-                    <% end %>
                   <%end%>
       </div>
     </div>

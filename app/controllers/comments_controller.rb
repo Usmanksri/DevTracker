@@ -13,6 +13,11 @@ class CommentsController < ApplicationController
 
         
         if @comment.save
+
+          url = request.original_url.gsub(/\/comments\z/, '')
+          data = { message: 'Task url path is: ', url: url }
+          ActionCable.server.broadcast('comments_channel', data)
+
           redirect_to @task, notice: "Comment created successfully."
         else
         
