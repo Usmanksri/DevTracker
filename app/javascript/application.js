@@ -2,6 +2,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "trix";
 import "@rails/actiontext";
+import "jquery"; // this import first
 
 // update the status of tasks
 $(document).ready(function() {
