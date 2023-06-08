@@ -10,18 +10,11 @@ class CommentsController < ApplicationController
         @comment.user = current_user
         @comment.commentable_id= params[:task_id]
         @comment.commentable_type="Task"
-
-        
         if @comment.save
-
-          url = request.original_url.gsub(/\/comments\z/, '')
-          data = { message: 'Task url path is: ', url: url }
-          ActionCable.server.broadcast('comments_channel', data)
-
+          ActionCable.server.broadcast('comments_channel', { data: 'Hello, server!' })
           redirect_to @task, notice: "Comment created successfully."
         else
-        
-            flash[:notice]= "Not updated  #{@comment.errors.full_messages}"  
+          flash[:notice]= "Not updated  #{@comment.errors.full_messages}"  
           render 'new'
         end
       end

@@ -19,5 +19,8 @@ module ApplicationHelper
       end.join.html_safe
     end
     
+    def notification_count
+      session[:notificationCount].to_i
+    end
 
 end
