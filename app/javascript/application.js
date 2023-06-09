@@ -2,6 +2,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "trix";
 import "@rails/actiontext";
+import "jquery"; // this import first
 
 // update the status of tasks
 $(document).ready(function() {
@@ -43,10 +44,10 @@ $(document).ready(function() {
     }
 
     // hide the flash and notice messages 
-      $('.flash-notice-container, .flash-alert-container').fadeIn('slow');
-      setTimeout(function() {
-        $('.flash-notice-container, .flash-alert-container').fadeOut('slow');
-      }, 5000);
+      // $('.flash-notice-container, .flash-alert-container').fadeIn('slow');
+      // setTimeout(function() {
+      //   $('.flash-notice-container, .flash-alert-container').fadeOut('slow');
+      // }, 5000);
 });
 
 

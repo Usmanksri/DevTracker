@@ -36,3 +36,6 @@
 
 #ignores the byebug history
 .byebug_history
+
+# Ignore jQuery files installed via Yarn
+/node_modules
